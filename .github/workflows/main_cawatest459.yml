@@ -29,10 +29,10 @@ jobs:
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: dotnet install ef
-        run: dotnet tool install -g dotnet-ef
+        run: dotnet tool install -g dotnet-ef --runtime 'linux-x64'
 
       - name: dotnet bundle migration
-        run: dotnet ef migrations bundle -p ContosoTeamStats.csproj -o ${{env.DOTNET_ROOT}}/myapp/migrate --verbose
+        run: dotnet ef migrations bundle -p ContosoTeamStats.csproj -o ${{env.DOTNET_ROOT}}/myapp/migrate --runtime 'linux-x64' --verbose
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
