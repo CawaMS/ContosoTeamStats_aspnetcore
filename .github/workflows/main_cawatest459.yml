@@ -31,6 +31,12 @@ jobs:
       - name: dotnet install ef
         run: dotnet tool install -g dotnet-ef
 
+      - name: dotnet add dotnetcore linux runtime
+        run: dotnet add package Microsoft.NETCore.App.Runtime.linux-x64
+
+      - name: dotnet add aspnetcore app runtime
+        run: dotnet add package Microsoft.AspNetCore.App.Runtime.linux-x64
+
       - name: dotnet bundle migration
         run: dotnet ef migrations bundle -p ContosoTeamStats.csproj -o ${{env.DOTNET_ROOT}}/myapp/migrate --verbose
 
